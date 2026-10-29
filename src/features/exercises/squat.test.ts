@@ -3,6 +3,20 @@ import assert from 'node:assert/strict';
 import {initialCounter, updateSquat, kneeAngle} from './squat';
 import {measure,updateExercise} from './tracking';
 import type {Point} from './squat';
+import {freshWorkout,completeSet,resumeSet} from './sets';
+test('sets pause for rest, ignore duplicate completion and finish at target',()=>{
+ const first=completeSet(freshWorkout,10,2,30,1000);
+ assert.equal(first.status,'resting');assert.deepEqual(first.completed,[10]);
+ assert.equal(completeSet(first,10,2,30,2000),first);
+ assert.equal(resumeSet(first,30000),first);
+ const next=resumeSet(first,31000);assert.equal(next.status,'working');
+ const done=completeSet(next,8,2,30,32000);assert.equal(done.status,'complete');assert.deepEqual(done.completed,[10,8]);
+ assert.equal(resumeSet(done,90000,true),done);
+});
+test('empty sets are ignored and rest can be skipped',()=>{
+ assert.equal(completeSet(freshWorkout,0,3,60,0),freshWorkout);
+ assert.equal(resumeSet(completeSet(freshWorkout,5,3,60,0),1,true).status,'working');
+});
 test('push-ups require extension, lowering and extension; jitter is ignored',()=>{
  let s=updateExercise(initialCounter,'pushup',90,100);
  s=updateExercise(s,'pushup',175,500);assert.equal(s.reps,0);

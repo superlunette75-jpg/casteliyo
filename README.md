@@ -24,6 +24,10 @@ The mirrored skeleton matches the contained video image. Missing or low-confiden
 
 ## Next milestones
 
+Set mechanics: choose sets, reps per set, and rest duration before starting (defaults: 3 × 10, 60 seconds). Camera or manual reps automatically finish a set at the target. Complete a shorter set with “Complete set early.” Counting pauses during rest; the next set starts automatically or via Skip rest. Save records the individual set totals, including a partial final set. Reset starts a fresh workout. Rest uses a wall-clock deadline, but browsers may throttle background tabs; keep this tab visible.
+
+Voice: tap “Test voice” before starting to trigger speech directly from a user gesture. Camera startup also speaks immediately before asynchronous model loading. English device voices are selected when available, with browser default fallback; playback failures appear beside Test voice. Voice enable also plays a confirmation. Device volume, installed voices and browser autoplay policies still affect playback; audible output needs real-device validation.
+
 1. Validate movement detection across people, devices, lighting and camera positions; tune thresholds from evidence.
 2. Add structured sets, rest timers and workout plans.
 3. Add Supabase authentication, access rules and synced history.
