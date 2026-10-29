@@ -4,6 +4,22 @@ import {initialCounter, updateSquat, kneeAngle} from './squat';
 import {measure,updateExercise} from './tracking';
 import type {Point} from './squat';
 import {freshWorkout,completeSet,resumeSet} from './sets';
+test('pull-ups require hanging, deep flexion and return to hang',()=>{
+ let s=updateExercise(initialCounter,'pullup',75,100);
+ s=updateExercise(s,'pullup',175,500);assert.equal(s.reps,0);
+ s=updateExercise(s,'pullup',100,900);s=updateExercise(s,'pullup',175,1300);assert.equal(s.reps,0);
+ s=updateExercise(s,'pullup',75,1700);s=updateExercise(s,'pullup',175,2100);assert.equal(s.reps,1);
+ s=updateExercise(s,'pullup',175,2300);assert.equal(s.reps,1);
+ s=updateExercise(s,'pullup',75,2700);s=updateExercise(s,'pullup',null,2800);s=updateExercise(s,'pullup',175,3100);assert.equal(s.reps,1);
+});
+test('pull-up tracking requires visible hips, upright torso and overhead wrists',()=>{
+ const points:Point[]=Array.from({length:33},()=>({x:.5,y:.5,visibility:0}));
+ points[11]={x:.4,y:.4,visibility:.95};points[13]={x:.5,y:.3,visibility:.95};points[15]={x:.4,y:.2,visibility:.95};points[23]={x:.4,y:.7,visibility:.95};
+ assert.notEqual(measure(points,'pullup','left',640,480).angle,null);
+ points[15].y=.6;assert.equal(measure(points,'pullup','left',640,480).angle,null);
+ points[15].y=.2;points[23].visibility=.2;assert.equal(measure(points,'pullup','left',640,480).angle,null);
+ points[23].visibility=.95;points[23].y=.3;assert.equal(measure(points,'pullup','left',640,480).angle,null);
+});
 test('sets pause for rest, ignore duplicate completion and finish at target',()=>{
  const first=completeSet(freshWorkout,10,2,30,1000);
  assert.equal(first.status,'resting');assert.deepEqual(first.completed,[10]);

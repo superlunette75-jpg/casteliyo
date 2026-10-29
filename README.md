@@ -24,6 +24,8 @@ The mirrored skeleton matches the contained video image. Missing or low-confiden
 
 ## Next milestones
 
+Pull-ups: select Pull-ups before starting. Frame hands, shoulders and hips from the side for the whole movement. The counter requires overhead wrists, an upright torso, an initial elbow extension above 160°, flexion below 90°, then full extension again. Sets, rest, voice and history work with this mode. This estimates reps from elbow movement; it does not verify chin clearance over the bar or certify strict pull-up form. Real-camera validation is still required.
+
 Set mechanics: choose sets, reps per set, and rest duration before starting (defaults: 3 × 10, 60 seconds). Camera or manual reps automatically finish a set at the target. Complete a shorter set with “Complete set early.” Counting pauses during rest; the next set starts automatically or via Skip rest. Save records the individual set totals, including a partial final set. Reset starts a fresh workout. Rest uses a wall-clock deadline, but browsers may throttle background tabs; keep this tab visible.
 
 Voice: tap “Test voice” before starting to trigger speech directly from a user gesture. Camera startup also speaks immediately before asynchronous model loading. English device voices are selected when available, with browser default fallback; playback failures appear beside Test voice. Voice enable also plays a confirmation. Device volume, installed voices and browser autoplay policies still affect playback; audible output needs real-device validation.
