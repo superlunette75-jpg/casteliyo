@@ -16,6 +16,12 @@ Squat counting uses MediaPipe landmarks processed on the device. The model and W
 
 Automated tests cover counting logic, not real-world tracking accuracy. Real-device iOS Safari / Android Chrome validation and comparison against human rep counts remain required before claiming accuracy. This prototype is not a form assessment or medical tool.
 
+## Push-ups and squat tracking
+
+Select the exercise before enabling the camera. Push-ups measure shoulder–elbow–wrist flexion; squats measure hip–knee–ankle flexion. A rep requires an initial extension above 160°, flexion below 105°, and return above 160°, with transitions separated by more than 300ms. These are prototype thresholds requiring real-device validation, not form-quality measurements. Push-ups require a low, side-on camera with the near arm visible. The most visible side is locked until camera restart; loss of that side pauses counting and resets incomplete reps rather than switching arms. Restart to recalibrate on the other side.
+
+The mirrored skeleton matches the contained video image. Missing or low-confidence joints are hidden. History records the chosen exercise; older records remain squats. Switching exercises resets the count, so save first.
+
 ## Next milestones
 
 1. Validate movement detection across people, devices, lighting and camera positions; tune thresholds from evidence.
