@@ -1,0 +1,26 @@
+# Casteliyo
+
+Camera workout coach web prototype. Requires Node.js 22+.
+
+## Develop
+
+Run `npm ci`, then `npm run dev`. Open the application in a browser. Deployed camera access requires HTTPS; localhost is allowed for development.
+
+## Validate
+
+Run `npm test`, `npm run typecheck`, and `npm run build`.
+
+## Milestone 1
+
+Squat counting uses MediaPipe landmarks processed on the device. The model and WASM are fetched from storage.googleapis.com and cdn.jsdelivr.net; fonts come from Google Fonts. Video is not uploaded or recorded. Turn sideways, position the camera at hip height, and keep hips, knees and ankles visible. Stand straight before starting. A complete rep requires standing, lowering below the configured knee threshold, then standing again. Tracking loss resets incomplete movements. Manual controls work without camera access. Voice uses browser speech synthesis. Finished workouts are stored locally in this browser, not synced to an account.
+
+Automated tests cover counting logic, not real-world tracking accuracy. Real-device iOS Safari / Android Chrome validation and comparison against human rep counts remain required before claiming accuracy. This prototype is not a form assessment or medical tool.
+
+## Next milestones
+
+1. Validate movement detection across people, devices, lighting and camera positions; tune thresholds from evidence.
+2. Add structured sets, rest timers and workout plans.
+3. Add Supabase authentication, access rules and synced history.
+4. Add reviewed recipes, deterministic allergy filters and meal planning.
+
+No service credentials are required for this milestone.
